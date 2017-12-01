@@ -13,28 +13,31 @@
         android:id="@+id/btn_Register"
         android:layout_width="205dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="8dp"
         android:alpha="0.8"
         android:text="Register a Student"
-        android:layout_marginBottom="51dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_ViewStudentDetails"
-        tools:layout_constraintRight_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/btn_ViewStudentDetails"
         android:layout_width="0dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="50dp"
         android:alpha="0.8"
         android:text="View Student Details"
-        android:layout_marginBottom="49dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_CalculateFees"
-        tools:layout_constraintRight_creator="1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_Register"
         app:layout_constraintRight_toRightOf="@+id/btn_Register"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="@+id/btn_Register"
-        app:layout_constraintHorizontal_bias="0.0" />
+        tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/btn_CalculateFees"
@@ -54,14 +57,14 @@
         android:id="@+id/btn_ViewUnpaidStudents"
         android:layout_width="205dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="60dp"
         android:alpha="0.8"
         android:text="View Unpaid Students"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="54dp"
-        tools:layout_constraintRight_creator="1"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintLeft_creator="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.502" />
+        tools:layout_constraintRight_creator="1" />
 
 </android.support.constraint.ConstraintLayout>

@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -38,7 +40,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
 
         String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
-        String completeRegistration_url = "http://10.0.2.2/skyManagement/studentManagementSystem/completeRegistration.php";
+        String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
         String switchVehicle_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/switchVehicle.php";
         String transferParcel_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/transferParcel.php";
         String completeDelivery_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/completeDelivery.php";
@@ -128,19 +130,19 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
         }
 
-      else  if (type.equals("completeRegistration")) { //Switch the courier vehicle
+      else  if (type.equals("getGrade")) { //Switch the courier vehicle
             try {
-               // String vehicleID = params[1];
-               // String courierID = params[2];
-                URL url = new URL(completeRegistration_url);
+                String studentID = params[1];
+
+                URL url = new URL(getGrade_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-
-               // bufferedWriter.write(post_data);
+                String post_data = URLEncoder.encode("studentID","UTF-8")+"="+URLEncoder.encode(studentID,"UTF-8");
+                bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 outputStream.close();
@@ -261,17 +263,29 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             context.startActivity(intent);
             ((Activity)context).finish();
        }
-       else   if (result.equals("Processing Registration")){//Stepping forward the registration
-            //  Intent intent = new Intent(context, Register2Activity.class);
-            //  context.startActivity(intent);
-             // ((Activity)context).finish();
+        else {//Registration possibilities need to be considered
+              String grade = result.replaceAll("[^A-Z]", "");//Checking whether the echo sends any numbers. If it contains any numbers, it's not "Grade"
 
-              alertDialog.setMessage(result);
-              alertDialog.show();
+              if (grade.equals("")) {  //It has no letters.
+                  SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context );
+                  SharedPreferences.Editor editor= sharedPreferences.edit();
+                  editor.putString("grade", result);//Saving the extracted result from the database
+                  editor.apply();
+                  Intent intent = new Intent(context, FeesActivity.class);//Currently calender is under Fees class
+                  context.startActivity(intent);
+
+ /*                 Intent intent = new Intent(context, FeesActivity.class);//Currently calender is under Fees class
+                  intent.putExtra("grade", result);//Passing selected Date to the previous view
+                  //intent.putExtra("fee", "12332");//Do the math here
+                  context.startActivity(intent);
+                  //context.finish();
+*/
+                 // alertDialog.setMessage(result);//temp
+                 // alertDialog.show();
               }
-        else {
-              alertDialog.setMessage(result);
-              alertDialog.show();
+            //  alertDialog.show();
+           //   alertDialog.setMessage(student_ID);
+            //  alertDialog.show();
           }
     }
 

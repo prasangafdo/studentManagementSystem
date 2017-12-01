@@ -1,7 +1,9 @@
 package com.fdo.prasanga.studentmanagementsystem;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -31,9 +33,14 @@ public class CalenderActivity extends AppCompatActivity {
 
                 String selected_Date = year+"-"+month+"-"+day;
 
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(CalenderActivity.this);
+                SharedPreferences.Editor editor= sharedPreferences.edit();
+                editor.putString("selected_Date", selected_Date);
+                editor.apply();
                 Intent intent = new Intent(CalenderActivity.this, FeesActivity.class);//Currently calender is under Fees class
-                intent.putExtra("selectedDate", selected_Date);//Passing selected Date to the previous view
+               // intent.putExtra("selectedDate", selected_Date);//Passing selected Date to the previous view
                 startActivity(intent);
+                finish();
             }
         });
                 //DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker1);
