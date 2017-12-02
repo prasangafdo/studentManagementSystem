@@ -37,11 +37,10 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
         //String login_url = "http://10.0.2.2/Prasanga/newDB/login.php";//Uncomment these if you're using in localhost
         String login_url = "http://10.0.2.2/skyManagement/studentManagementSystem/login.php";
-
-
         String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
         String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
-        String switchVehicle_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/switchVehicle.php";
+        String updateFees_url = "http://10.0.2.2/skyManagement/studentManagementSystem/updateFees.php";
+
         String transferParcel_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/transferParcel.php";
         String completeDelivery_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/completeDelivery.php";
         String userID_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/userid.php";
@@ -83,9 +82,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
         else if (type.equals("registerStudent")){// Registering a student
             try {
-              //  String vID = params[1];
-              //  String latitude = params[2];
-               // String longitude = params[3];
 
                 String firstName = params[1];
                 String lastName = params[2];
@@ -130,7 +126,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             }
         }
 
-      else  if (type.equals("getGrade")) { //Switch the courier vehicle
+      else  if (type.equals("getGrade")) { //Getting grade from the student table
             try {
                 String studentID = params[1];
 
@@ -166,23 +162,23 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         }
 
 
-         else if (type.equals("TransferParcel")){//transfer a parcel to another vehicle
+         else if (type.equals("updateFees")){//Update Fees table
                 try {
-                    String courierID = params[1];
-                    String vehicleID = params[2];
-                    String parcelID = params[3];
+                    String studentID = params[1];
+                    String next_Date = params[2];
+                    String current_Date = params[3];
 
 
-                    URL url = new URL(transferParcel_url);
+                    URL url = new URL(updateFees_url);
                     HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                     httpURLConnection.setRequestMethod("POST");
                     httpURLConnection.setDoOutput(true);
                     httpURLConnection.setDoInput(true);
                     OutputStream outputStream = httpURLConnection.getOutputStream();
                     BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-                    String post_data = URLEncoder.encode("vehicleID","UTF-8")+"="+URLEncoder.encode(vehicleID,"UTF-8")+"&"
-                            +URLEncoder.encode("courierID","UTF-8")+"="+URLEncoder.encode(courierID,"UTF-8")+"&"
-                            +URLEncoder.encode("parcelID","UTF-8")+"="+URLEncoder.encode(parcelID,"UTF-8");
+                    String post_data = URLEncoder.encode("studentID","UTF-8")+"="+URLEncoder.encode(studentID,"UTF-8")+"&"
+                            +URLEncoder.encode("next_Date","UTF-8")+"="+URLEncoder.encode(next_Date,"UTF-8")+"&"
+                            +URLEncoder.encode("current_Date","UTF-8")+"="+URLEncoder.encode(current_Date,"UTF-8");
                     bufferedWriter.write(post_data);
                     bufferedWriter.flush();
                     bufferedWriter.close();
@@ -263,30 +259,40 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             context.startActivity(intent);
             ((Activity)context).finish();
        }
+      /* else {
+              alertDialog.setMessage(result);
+              alertDialog.show();
+          }
+*/
+       ///////Just this code
+
+
+
         else {//Registration possibilities need to be considered
               String grade = result.replaceAll("[^A-Z]", "");//Checking whether the echo sends any numbers. If it contains any numbers, it's not "Grade"
 
-              if (grade.equals("")) {  //It has no letters.
+              if (grade.equals("")) {  //It has no letters. (Only possibility is retrieving grade.)
                   SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context );
                   SharedPreferences.Editor editor= sharedPreferences.edit();
                   editor.putString("grade", result);//Saving the extracted result from the database
                   editor.apply();
-                  Intent intent = new Intent(context, FeesActivity.class);//Currently calender is under Fees class
+                  Intent intent = new Intent(context, Fees2Activity.class);
                   context.startActivity(intent);
 
- /*                 Intent intent = new Intent(context, FeesActivity.class);//Currently calender is under Fees class
-                  intent.putExtra("grade", result);//Passing selected Date to the previous view
-                  //intent.putExtra("fee", "12332");//Do the math here
-                  context.startActivity(intent);
-                  //context.finish();
-*/
                  // alertDialog.setMessage(result);//temp
                  // alertDialog.show();
+              }
+
+              else {
+                  alertDialog.setMessage(result);
+                    alertDialog.show();
               }
             //  alertDialog.show();
            //   alertDialog.setMessage(student_ID);
             //  alertDialog.show();
           }
+
+
     }
 
     @Override

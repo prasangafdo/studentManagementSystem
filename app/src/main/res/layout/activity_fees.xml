@@ -8,140 +8,30 @@
     tools:layout_editor_absoluteY="81dp">
 
 
-    <Button
-        android:id="@+id/btn_getDate"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_marginBottom="34dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="43dp"
-        android:text="Select date"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_completePaytment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_DateOutput"
-        app:layout_constraintTop_toTopOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/tv_DateOutput"
-        android:layout_width="0dp"
-        android:layout_height="31dp"
-        android:layout_marginBottom="132dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="131dp"
-        android:text="Next Due Date"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_getDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_calculateFees" />
-
-    <TextView
-        android:id="@+id/tv_CurrentDate"
-        android:layout_width="wrap_content"
-        android:layout_height="27dp"
-        android:layout_marginBottom="45dp"
-        android:layout_marginTop="49dp"
-        android:text="TextView"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_Fee"
-        app:layout_constraintStart_toStartOf="@+id/tv_grade"
-        app:layout_constraintTop_toTopOf="@+id/tv_grade" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
-        android:layout_marginTop="35dp"
-        android:text="Current Date: "
-        android:textSize="17dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_CurrentDate"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="0dp"
-        android:layout_height="19dp"
-        android:layout_marginBottom="35dp"
-        android:layout_marginEnd="23dp"
-        android:layout_marginStart="16dp"
-        android:text="Select Next Payment Date"
-        android:textColor="#000"
-        app:layout_constraintBottom_toTopOf="@+id/tv_DateOutput"
-        app:layout_constraintEnd_toStartOf="@+id/btn_getDate"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btn_completePaytment"
-        android:layout_width="154dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="47dp"
-        android:text="Complete Payment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_getDate"
-        app:layout_constraintStart_toStartOf="@+id/btn_getDate" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="26dp"
-        android:text="Grade: "
-        app:layout_constraintStart_toStartOf="@+id/et_fees_StudentID"
-        app:layout_constraintTop_toBottomOf="@+id/et_fees_StudentID" />
-
-    <TextView
-        android:id="@+id/tv_grade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
-        android:layout_marginTop="26dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/et_fees_StudentID"
-        app:layout_constraintTop_toBottomOf="@+id/et_fees_StudentID" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:text="Calculated Fee:"
-        app:layout_constraintEnd_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/tv_Fee"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/btn_calculateFees"
-        app:layout_constraintStart_toStartOf="@+id/tv_CurrentDate" />
-
     <EditText
         android:id="@+id/et_fees_StudentID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginBottom="30dp"
         android:ems="10"
         android:hint="Enter Student ID"
         android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/btn_toActivity2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
-        android:id="@+id/btn_calculateFees"
-        android:layout_width="149dp"
+        android:id="@+id/btn_toActivity2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35dp"
-        android:text="Calculate Fees"
+        android:layout_marginBottom="2dp"
+        android:text="Next ->"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/et_fees_StudentID" />
 
 
 </android.support.constraint.ConstraintLayout>

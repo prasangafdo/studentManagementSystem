@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.fdo.prasanga.studentmanagementsystem.Fees2Activity"
+    tools:layout_editor_absoluteY="81dp">
+
+
+    <Button
+        android:id="@+id/btn_getDate"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="16dp"
+        android:text="Select date"
+        android:textSize="12dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btn_completePaytment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_completePaytment" />
+
+    <TextView
+        android:id="@+id/tv_CurrentDate"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_marginBottom="114dp"
+        android:layout_marginTop="115dp"
+        android:text="TextView"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="@+id/tv_grade"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="33dp"
+        android:layout_marginStart="18dp"
+        android:text="Current Date: "
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="167dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="16dp"
+        android:text="Select Next Payment Date"
+        android:textColor="#000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_completePaytment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="27dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginStart="29dp"
+        android:text="Complete Payment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_getDate"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:text="Grade: "
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_grade"
+        app:layout_constraintEnd_toStartOf="@+id/tv_studentID" />
+
+    <TextView
+        android:id="@+id/tv_grade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="37dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/tv_studentID"
+        app:layout_constraintTop_toBottomOf="@+id/tv_studentID" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginStart="43dp"
+        android:text="Calculated Fee:"
+        app:layout_constraintBottom_toTopOf="@+id/textView8"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_Fee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/tv_CurrentDate"
+        app:layout_constraintTop_toBottomOf="@+id/tv_CurrentDate" />
+
+    <TextView
+        android:id="@+id/tv_studentID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="59dp"
+        android:layout_marginTop="39dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:text="Student ID: "
+        app:layout_constraintBaseline_toBaselineOf="@+id/tv_studentID"
+        app:layout_constraintEnd_toStartOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView3" />
+
+    <DatePicker
+        android:id="@+id/dtp_Calendar"
+        android:layout_width="0dp"
+        android:layout_height="115dp"
+        android:layout_marginBottom="110dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="108dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_getDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView5" />
+
+
+</android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.fdo.prasanga.studentmanagementsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,12 +28,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String username =et_Username.getText().toString();
+           /*     String username =et_Username.getText().toString();
                 String password =et_Password.getText().toString();
                 String type = "Login";
 
                 BackgroundWorker backgroundWorker = new BackgroundWorker(LoginActivity.this);
-                backgroundWorker.execute(type, username, password);
+                backgroundWorker.execute(type, username, password);*/
+                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                startActivity(intent);
             }
         });
 

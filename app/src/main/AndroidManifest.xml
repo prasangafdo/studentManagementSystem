@@ -22,8 +22,8 @@
         <activity android:name=".StudentDetailsActivity" />
         <activity android:name=".FeesActivity" />
         <activity android:name=".UnpaidStudentsActivity" />
-        <activity android:name=".CalenderActivity" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".Fees2Activity"></activity>
     </application>
 
 </manifest>
