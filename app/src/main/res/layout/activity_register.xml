@@ -1,120 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.fdo.prasanga.studentmanagementsystem.RegisterActivity"
-    tools:layout_editor_absoluteY="81dp">
+    android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/et_FirstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="21dp"
-        android:layout_marginTop="29dp"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/et_LastName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.fdo.prasanga.studentmanagementsystem.RegisterActivity"
+        tools:layout_editor_absoluteY="81dp">
 
-    <EditText
-        android:id="@+id/et_LastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
-        android:ems="10"
-        android:hint="Last Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/et_Address"
-        app:layout_constraintStart_toStartOf="@+id/et_FirstName"
-        app:layout_constraintTop_toBottomOf="@+id/et_FirstName" />
+        <EditText
+            android:id="@+id/et_FirstName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:layout_marginTop="29dp"
+            android:ems="10"
+            android:hint="First Name"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/et_LastName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_Address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/et_DateofBirth"
-        app:layout_constraintStart_toStartOf="@+id/et_LastName"
-        app:layout_constraintTop_toBottomOf="@+id/et_LastName" />
+        <EditText
+            android:id="@+id/et_LastName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:ems="10"
+            android:hint="Last Name"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/et_Address"
+            app:layout_constraintStart_toStartOf="@+id/et_FirstName"
+            app:layout_constraintTop_toBottomOf="@+id/et_FirstName" />
 
-    <EditText
-        android:id="@+id/et_DateofBirth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="Date of Birth"
-        android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/et_Grade"
-        app:layout_constraintStart_toStartOf="@+id/et_Address"
-        app:layout_constraintTop_toBottomOf="@+id/et_Address" />
+        <EditText
+            android:id="@+id/et_Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="21dp"
+            android:ems="10"
+            android:hint="Address"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/et_DateofBirth"
+            app:layout_constraintStart_toStartOf="@+id/et_LastName"
+            app:layout_constraintTop_toBottomOf="@+id/et_LastName" />
 
-    <EditText
-        android:id="@+id/et_Grade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:ems="10"
-        android:hint="Grade"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/et_ParentNum"
-        app:layout_constraintStart_toStartOf="@+id/et_DateofBirth"
-        app:layout_constraintTop_toBottomOf="@+id/et_DateofBirth" />
+        <EditText
+            android:id="@+id/et_DateofBirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="19dp"
+            android:ems="10"
+            android:hint="Date of Birth"
+            android:inputType="date"
+            app:layout_constraintBottom_toTopOf="@+id/et_Grade"
+            app:layout_constraintStart_toStartOf="@+id/et_Address"
+            app:layout_constraintTop_toBottomOf="@+id/et_Address" />
 
-    <EditText
-        android:id="@+id/et_ParentNum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="26dp"
-        android:ems="10"
-        android:hint="Parent's Contact Number"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/ck_RegistrationFee"
-        app:layout_constraintStart_toStartOf="@+id/et_Grade"
-        app:layout_constraintTop_toBottomOf="@+id/et_Grade" />
+        <EditText
+            android:id="@+id/et_Grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:hint="Grade"
+            android:inputType="number"
+            app:layout_constraintBottom_toTopOf="@+id/et_ParentNum"
+            app:layout_constraintStart_toStartOf="@+id/et_DateofBirth"
+            app:layout_constraintTop_toBottomOf="@+id/et_DateofBirth" />
+
+        <EditText
+            android:id="@+id/et_ParentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp"
+            android:ems="10"
+            android:hint="Parent's Contact Number"
+            android:inputType="phone"
+            app:layout_constraintBottom_toTopOf="@+id/ck_RegistrationFee"
+            app:layout_constraintStart_toStartOf="@+id/et_Grade"
+            app:layout_constraintTop_toBottomOf="@+id/et_Grade" />
 
 
-    <CheckBox
-        android:id="@+id/ck_RegistrationFee"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginBottom="14dp"
-        android:text="Student has paid the Registration Fee"
-        app:layout_constraintBottom_toTopOf="@+id/btn_calFees"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_ParentNum" />
+        <CheckBox
+            android:id="@+id/ck_RegistrationFee"
+            android:layout_width="271dp"
+            android:layout_height="29dp"
+            android:layout_marginBottom="11dp"
+            android:layout_marginEnd="63dp"
+            android:layout_marginStart="63dp"
+            android:gravity="center"
+            android:text="Student has paid the Registration Fee"
+            app:layout_constraintBottom_toTopOf="@+id/btn_calFees"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_ParentNum" />
 
-    <Button
-        android:id="@+id/btn_CompleteRegistration"
-        android:layout_width="199dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
-        android:paddingBottom="20dp"
-        android:text="Complete Registration"
-        android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_calFees" />
+        <Button
+            android:id="@+id/btn_CompleteRegistration"
+            android:layout_width="199dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="39dp"
+            android:paddingBottom="20dp"
+            android:text="Complete Registration"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_calFees" />
 
-    <Button
-        android:id="@+id/btn_calFees"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
-        android:layout_marginStart="30dp"
-        android:text="Calculate fees"
-        app:layout_constraintBottom_toTopOf="@+id/btn_CompleteRegistration"
-        app:layout_constraintStart_toStartOf="@+id/btn_CompleteRegistration"
-        app:layout_constraintTop_toBottomOf="@+id/ck_RegistrationFee" />
+        <Button
+            android:id="@+id/btn_calFees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="30dp"
+            android:text="Calculate fees"
+            app:layout_constraintBottom_toTopOf="@+id/btn_CompleteRegistration"
+            app:layout_constraintStart_toStartOf="@+id/btn_CompleteRegistration"
+            app:layout_constraintTop_toBottomOf="@+id/ck_RegistrationFee" />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>
