@@ -2,7 +2,15 @@ package com.fdo.prasanga.studentmanagementsystem;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.widget.ListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,62 +23,110 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by Prasanga Fernando on 12/2/2017.
  */
 
-public class getUnpaidStudents extends AsyncTask<String, Void, String>{
+public class getUnpaidStudents extends AsyncTask<String, Void, String> {
     Context context;
     AlertDialog alertDialog;
+    //Context c;
+    // String address;
+    ListView lv;
+    //String setStudentID_url = "http://10.0.2.2/skyManagement/studentManagementSystem/setUnpaidStudentID.php";
+    String setStudentID_url = "http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentInfo.php";
 
-    getUnpaidStudents(Context ctx){
+    getUnpaidStudents(Context ctx) {
         context = ctx;
+
+    }
+
+    public getUnpaidStudents(Context c, String setStudentID_url, ListView lv) {
+        this.context = c;
+        this.setStudentID_url = setStudentID_url;
+        this.lv = lv;
     }
 
     @Override
-    protected String doInBackground(String ... params) {
+    protected String doInBackground(String... params) {
         String type = params[0];
 
-        //String login_url = "http://10.0.2.2/Prasanga/newDB/login.php";//Uncomment these if you're using in localhost
-        String getUnpaidStudentID_url = "http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentID.php";
 
-        //Remove the rest
-        String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
-        String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
-        String updateFees_url = "http://10.0.2.2/skyManagement/studentManagementSystem/updateFees.php";
-
-        String transferParcel_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/transferParcel.php";
-        String completeDelivery_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/completeDelivery.php";
-        String userID_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/userid.php";
-
-        if (type.equals("getStudent_ID")) {
+        if (type.equals("setStudent_ID")) {
             try {
-                String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+                // String student_ID = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-              //  String password = "temp";//remove this
-                URL url = new URL(getUnpaidStudentID_url);
+                String student_ID = params[1];//remove this
+                URL url = new URL(setStudentID_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-                String post_data = URLEncoder.encode("date","UTF-8")+"="+URLEncoder.encode(date,"UTF-8");//+"&"
-                      //  +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+                String post_data = URLEncoder.encode("student_ID", "UTF-8") + "=" + URLEncoder.encode(student_ID, "UTF-8");//+"&"
+                // +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
                 bufferedWriter.write(post_data);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 outputStream.close();
+                ///////////////////
+
+                ////////////////
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result= "";
-                String line= "";
-                while ((line = bufferedReader.readLine())!=null){
-                    result+=line;
+                String result = "";
+                String line = "";
+                StringBuffer sb=new StringBuffer();
+                if(bufferedReader != null) {
+                    while ((line=bufferedReader.readLine()) != null) {
+                       result = sb.append(line+"n").toString();
+                    }
+                }else {
+                    return null;
+                }//////////////////
+                //Json array
+
+                try {
+                    //ADD THAT DATA TO JSON ARRAY FIRST
+                    JSONArray ja = new JSONArray(result);
+                    //CREATE JO OBJ TO HOLD A SINGLE ITEM
+                    JSONObject jo = null;
+                    //Student_IDs.clear();
+                    //LOOP THRU ARRAY
+                    for (int i = 0; i < ja.length(); i++) {
+                        jo = ja.getJSONObject(i);
+                        //RETRIEVE NAME
+                        String first_name = jo.getString("first_Name");//This is the column name you want toi retrieve
+                        String last_name = jo.getString("last_Name");
+                        String address = jo.getString("user_Address");
+                        String grade = jo.getString("grade");
+                        String p_num = jo.getString("parent_Contact_Num");
+                        String name = first_name+ " "+last_name;
+
+                            //alertDialog.setMessage("Name: "+name+"\nAddress: "+address+"\nGrade: "+grade+"\nParent's contact number: "+p_num);
+                            //alertDialog.show(); //Uncomment to get the result through am alert dialog
+
+                               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                               SharedPreferences.Editor editor = sharedPreferences.edit();
+                               editor.putString("name", name);//Saving the extracted result from the database
+                               editor.putString("address", address);
+                               editor.putString("grade", grade);
+                               editor.putString("p_num", p_num);
+                               editor.apply();
+
+                        Intent intent = new Intent(context, UnpaidStudentInfoActivity.class);
+                        context.startActivity(intent);
+/////////////////////////////////
+                        //  Student_IDs.add(student_ID);//Adding name to the arraylist
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+                /////////////////
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
@@ -82,165 +138,6 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String>{
             }
 
         }
-        else if (type.equals("registerStudent")){// Registering a student
-            try {
-
-                String firstName = params[1];
-                String lastName = params[2];
-                String address = params[3];
-                String dateofBirth = params[4];
-                String grade = params[5];
-                String parentNum = params[6];
-
-
-                URL url = new URL(registerStudent_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");//Using POST method
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-                String post_data = URLEncoder.encode("firstName","UTF-8")+"="+URLEncoder.encode(firstName,"UTF-8")+"&"
-                        +URLEncoder.encode("lastName","UTF-8")+"="+URLEncoder.encode(lastName,"UTF-8")+"&"
-                        +URLEncoder.encode("address","UTF-8")+"="+URLEncoder.encode(address,"UTF-8")+"&"
-                        +URLEncoder.encode("dateofBirth","UTF-8")+"="+URLEncoder.encode(dateofBirth,"UTF-8")+"&"
-                        +URLEncoder.encode("grade","UTF-8")+"="+URLEncoder.encode(grade,"UTF-8")+"&"
-                        +URLEncoder.encode("parentNum","UTF-8")+"="+URLEncoder.encode(parentNum,"UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();//Sending data to the hosted php file
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result= "";
-                String line= "";
-                while ((line = bufferedReader.readLine())!=null){
-                    result+=line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        else  if (type.equals("getGrade")) { //Getting grade from the student table
-            try {
-                String studentID = params[1];
-
-                URL url = new URL(getGrade_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-                String post_data = URLEncoder.encode("studentID","UTF-8")+"="+URLEncoder.encode(studentID,"UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result= "";
-                String line= "";
-                while ((line = bufferedReader.readLine())!=null){
-                    result+=line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-
-        else if (type.equals("updateFees")){//Update Fees table
-            try {
-                String studentID = params[1];
-                String next_Date = params[2];
-                String current_Date = params[3];
-                String fee = params[4];
-
-                URL url = new URL(updateFees_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-                String post_data = URLEncoder.encode("studentID","UTF-8")+"="+URLEncoder.encode(studentID,"UTF-8")+"&"
-                        +URLEncoder.encode("next_Date","UTF-8")+"="+URLEncoder.encode(next_Date,"UTF-8")+"&"
-                        +URLEncoder.encode("fee","UTF-8")+"="+URLEncoder.encode(fee,"UTF-8")+"&"
-                        +URLEncoder.encode("current_Date","UTF-8")+"="+URLEncoder.encode(current_Date,"UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result= "";
-                String line= "";
-                while ((line = bufferedReader.readLine())!=null){
-                    result+=line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        else if (type.equals("completeDelivery")){//Complete Delivery
-            try {
-                String parcelID = params[1];
-
-                URL url = new URL(completeDelivery_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-                String post_data = URLEncoder.encode("parcelID","UTF-8")+"="+URLEncoder.encode(parcelID,"UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result= "";
-                String line= "";
-                while ((line = bufferedReader.readLine())!=null){
-                    result+=line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-
         return null;
     }
 
@@ -252,10 +149,14 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String>{
 
     @Override
     public void onPostExecute(String result) {
-       alertDialog.setMessage(result);
-        alertDialog.show();
+     //   String next_due_date = "nnnnnn";
 
-    }
+
+      //  alertDialog.setMessage(result);
+
+
+
+}
 
     @Override
     protected void onProgressUpdate(Void... values) {
@@ -263,5 +164,5 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String>{
     }
 
 
-
 }
+

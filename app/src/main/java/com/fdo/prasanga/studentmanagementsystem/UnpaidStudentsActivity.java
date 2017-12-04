@@ -6,7 +6,8 @@ import android.widget.ListView;
 
 public class UnpaidStudentsActivity extends AppCompatActivity {
 
-    String url="http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentID.php";
+    String student_ID_url="http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentID.php";
+    //String student_info_url="http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentInfo.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,12 @@ public class UnpaidStudentsActivity extends AppCompatActivity {
         gv_1.setNumColumns(5);
 */
         final ListView lv= (ListView) findViewById(R.id.lv);
-        final Downloader d=new Downloader(this,url,lv);
+        final Student_ID_Downloader d=new Student_ID_Downloader(this,student_ID_url,lv);
+        //final Student_Info_Downloader d2=new Student_Info_Downloader(this,student_info_url,lv);
+
+     //   getUnpaidStudents get = new getUnpaidStudents(this);
+      //  get.execute("getStudent_ID",Student_IDs.get(position));
+    //    get.execute("getStudent_ID","555");
 
 
     /*    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -39,5 +45,6 @@ public class UnpaidStudentsActivity extends AppCompatActivity {
         });*/
 
         d.execute();
+     //   d2.execute();
     }
 }

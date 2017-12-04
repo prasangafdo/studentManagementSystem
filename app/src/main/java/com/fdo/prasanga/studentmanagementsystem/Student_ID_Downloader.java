@@ -19,12 +19,12 @@ import java.net.URL;
  * Created by Prasanga Fernando on 12/3/2017.
  */
 
-public class Downloader extends AsyncTask<Void,Integer,String> {
+public class Student_ID_Downloader extends AsyncTask<Void,Integer,String> {
     Context c;
     String address;
     ListView lv;
     ProgressDialog pd;
-    public Downloader(Context c, String address, ListView lv) {
+    public Student_ID_Downloader(Context c, String address, ListView lv) {
         this.c = c;
         this.address = address;
         this.lv = lv;
@@ -49,7 +49,7 @@ public class Downloader extends AsyncTask<Void,Integer,String> {
         pd.dismiss();;
         if(s != null)
         {
-            Parser p=new Parser(c,s,lv);
+            Student_ID_Parser p=new Student_ID_Parser(c,s,lv);
             p.execute();
         }else
         {

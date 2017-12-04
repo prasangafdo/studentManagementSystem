@@ -1,9 +1,9 @@
 package com.fdo.prasanga.studentmanagementsystem;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 public class UnpaidStudentInfoActivity extends AppCompatActivity {
@@ -13,16 +13,28 @@ public class UnpaidStudentInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unpaid_student_info);
 
-        TextView tv_pickupAddress, tv_deliveryAddress;
+        TextView tv_name, tv_address, tv_grade, tv_P_Num;
 
-        tv_pickupAddress = (TextView) findViewById(R.id.tv_pickup_Address);
-        tv_deliveryAddress = (TextView) findViewById(R.id.tv_delivery_Address);
+        tv_name = (TextView) findViewById(R.id.tv_up_Name);
+        tv_address = (TextView) findViewById(R.id.tv_up_Address);
+        tv_grade = (TextView) findViewById(R.id.tv_up_grade);
+        tv_P_Num = (TextView) findViewById(R.id.tv_up_p_Num);
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);//Retrieving all saved data.
-        String pickup_address = preferences.getString("pickup_address", null);
-        String delivery_address = preferences.getString("delivery_address", null);//def is the default value
+       String name = preferences.getString("name", null);//Redundent
+       String address = preferences.getString("address", null);
+        String grade = preferences.getString("grade", null);
+        String p_num = preferences.getString("p_num", null);
+ /*
+*/
+        tv_name.setText(name);
+      tv_address.setText(address);
+        tv_grade.setText(grade);
+        tv_P_Num.setText(p_num);  /**/
+        //String student_info_url="http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentInfo.php";
 
-        tv_pickupAddress.setText(pickup_address);
-        tv_deliveryAddress.setText(delivery_address);
+      //  final ListView lv= (ListView) findViewById(R.id.lv_m);
+      //  final Student_Info_Downloader d=new Student_Info_Downloader(this,student_info_url,lv);
+      //  d.execute();
     }
 }
