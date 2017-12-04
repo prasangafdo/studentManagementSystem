@@ -1,15 +1,17 @@
 package com.fdo.prasanga.studentmanagementsystem;
 
+/**
+ * Created by Prasanga Fernando on 12/4/2017.
+ */
+
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,105 +31,54 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
-public class Fees2Activity extends AppCompatActivity {
-    Button btn_completePayment, btn_generateInvoice;
-    TextView tv_CurrentDate, tv_grade, tv_Fee, tv_studentID;
-    DatePicker dtp_calendar;
-    String StudentID;
+public class GenerateInvoice extends AppCompatActivity{
+
 
     private static final String TAG = "PdfCreatorActivity";
-   // private EditText mContentEditText, et_Prasanga;
-  //  private Button mCreateButton;
+    TextView tv_CurrentDate, tv_grade, tv_Fee, tv_studentID;
+    private Button btn_generateInvoice;
     private File pdfFile;
+    DatePicker dtp_calendar;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fees2);
 
-        btn_completePayment = (Button) findViewById(R.id.btn_completePaytment);
-        btn_generateInvoice =(Button) findViewById(R.id.btn_generateInvoice);
+      //  mContentEditText = (EditText) findViewById(R.id.edit_text_content);
+        btn_generateInvoice = (Button) findViewById(R.id.btn_generateInvoice);
+      //  et_Prasanga = (EditText) findViewById(R.id.et_Prasanga);
         tv_CurrentDate = (TextView) findViewById(R.id.tv_CurrentDate);
-
         tv_grade = (TextView) findViewById(R.id.tv_grade);
         tv_Fee = (TextView) findViewById(R.id.tv_Fee);
         tv_studentID = (TextView) findViewById(R.id.tv_studentID);
         dtp_calendar = (DatePicker) findViewById(R.id.dtp_Calendar);
+
         btn_generateInvoice.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-       //GenerateInvoice invoice = new GenerateInvoice();
-        try {
-            createPdfWrapper();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        }
-    }
-});
-
-
-
-
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        tv_CurrentDate.setText(date);//Setting the current date
-
-
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Fees2Activity.this);//Retrieving all saved data.
-        String student_ID = preferences.getString("Student_ID", null);
-        String grade = preferences.getString("grade", "def");//def is the default value
-
-        tv_grade.setText(grade);
-        tv_studentID.setText(student_ID);
-
-
-        if (Integer.parseInt(grade)>5){//Calculating fees
-
-          //  Toast.makeText(getApplicationContext(),"Fee is 4000",Toast.LENGTH_SHORT).show();//Just for debugging
-            tv_Fee.setText("4000.00");
-
-        }
-        else
-        {
-           // Toast.makeText(getApplicationContext(),"Fee is 3000", Toast.LENGTH_SHORT).show();
-            tv_Fee.setText("3000.00");
-        }
-
-      btn_completePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                CalendarDate date = new CalendarDate();//Generating date from the subclass
-                date.setDate(Integer.toString(dtp_calendar.getYear()),Integer.toString(dtp_calendar.getMonth()+1), Integer.toString(dtp_calendar.getDayOfMonth()));
-
-                String type = "updateFees";
-                String studentID = tv_studentID.getText().toString();
-                String next_Date = date.getDate();
-                String current_Date = tv_CurrentDate.getText().toString();
-                String fee = tv_Fee.getText().toString();
-                //Calculate fees and send
-
-                Toast.makeText(getApplicationContext(),"St: "+studentID+" N Date: "+next_Date+ "C date: "+current_Date, Toast.LENGTH_LONG).show();
-
-                BackgroundWorker backgroundWorker = new BackgroundWorker(Fees2Activity.this);
-                backgroundWorker.execute(type,studentID, next_Date, current_Date, fee);//Put strings to execute
-
+                   /* if (mContentEditText.getText().toString().isEmpty()) {
+                        mContentEditText.setError("Body is empty");
+                        mContentEditText.requestFocus();
+                        return;
+                    }
+                    }*/
+                try {
+                    createPdfWrapper();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
     }
 
-    /////////////////////////////////////////
-
-
-    private void createPdfWrapper() throws FileNotFoundException, DocumentException {
+    public void createPdfWrapper() throws FileNotFoundException, DocumentException {
 
         int hasWriteStoragePermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (hasWriteStoragePermission != PackageManager.PERMISSION_GRANTED) {
@@ -180,7 +131,7 @@ public class Fees2Activity extends AppCompatActivity {
         }
     }
 
-    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+    public void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new AlertDialog.Builder(this)
                 .setMessage(message)
                 .setPositiveButton("OK", okListener)
@@ -189,7 +140,7 @@ public class Fees2Activity extends AppCompatActivity {
                 .show();
     }
 
-    private void createPdf() throws FileNotFoundException, DocumentException {
+    public void createPdf() throws FileNotFoundException, DocumentException {
 
         File docsFolder = new File(Environment.getExternalStorageDirectory() + "/Documents");
         if (!docsFolder.exists()) {
@@ -202,18 +153,25 @@ public class Fees2Activity extends AppCompatActivity {
         Document document = new Document();
         PdfWriter.getInstance(document, output);
         document.open();
-        document.add(new Paragraph("Student ID: "));//Here we include the data we want to put into the pdf file
-        document.add(new Paragraph("Grade: "));
-        document.add(new Paragraph("Paid Date: "));
-        document.add(new Paragraph("Paid Amount: "));
-        document.add(new Paragraph("Next Payment Date: "));
+
+        CalendarDate date = new CalendarDate();//Generating date from the subclass
+        date.setDate(Integer.toString(dtp_calendar.getYear()),Integer.toString(dtp_calendar.getMonth()+1), Integer.toString(dtp_calendar.getDayOfMonth()));
+
+        String studentID = "Student ID: "+tv_studentID.getText().toString();
+        String next_Date = date.getDate();
+        String current_Date = tv_CurrentDate.getText().toString();
+        String fee = tv_Fee.getText().toString();
+        String grade = tv_grade.getText().toString();
+
+        document.add(new Paragraph(studentID));//Data to be saved in a pdf
+        document.add(new Paragraph(next_Date));
 
         document.close();
         previewPdf();
 
     }
 
-    private void previewPdf() {
+    public void previewPdf() {
 
         PackageManager packageManager = getPackageManager();
         Intent testIntent = new Intent(Intent.ACTION_VIEW);

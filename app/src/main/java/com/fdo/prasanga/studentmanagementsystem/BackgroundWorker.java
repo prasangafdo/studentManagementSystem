@@ -36,10 +36,13 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
         String type = params[0];
 
         //String login_url = "http://10.0.2.2/Prasanga/newDB/login.php";//Uncomment these if you're using in localhost
-        String login_url = "http://10.0.2.2/skyManagement/studentManagementSystem/login.php";
-        String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
-        String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
-        String updateFees_url = "http://10.0.2.2/skyManagement/studentManagementSystem/updateFees.php";
+        String login_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/login.php";
+        String registerStudent_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/registerStudent.php";
+        // String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
+        String getGrade_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/selectGrade.php";
+        // String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
+        String updateFees_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/updateFees.php";
+        //String updateFees_url = "http://10.0.2.2/skyManagement/studentManagementSystem/updateFees.php";
 
         String transferParcel_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/transferParcel.php";
         String completeDelivery_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/completeDelivery.php";
@@ -280,8 +283,8 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                   Intent intent = new Intent(context, Fees2Activity.class);
                   context.startActivity(intent);
 
-                 // alertDialog.setMessage(result);//temp
-                 // alertDialog.show();
+              //    alertDialog.setMessage(result);//temp
+               //   alertDialog.show();
               }
 
               else {

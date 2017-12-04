@@ -1,6 +1,5 @@
 package com.fdo.prasanga.studentmanagementsystem;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -26,7 +25,7 @@ public class FeesActivity extends AppCompatActivity {
         btn_toActivity2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(FeesActivity.this, Fees2Activity.class);
+
                 Student_ID = et_Student_ID.getText().toString();
 
 
@@ -41,7 +40,7 @@ public class FeesActivity extends AppCompatActivity {
                 backgroundWorker.execute(type, Student_ID);
 
                // intent.putExtra("Student_ID", Student_ID);
-                startActivity(intent);
+             //   startActivity(intent);
                 finish();
             }
         });

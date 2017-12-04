@@ -34,11 +34,13 @@
     <TextView
         android:id="@+id/textView8"
         android:layout_width="167dp"
-        android:layout_height="21dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="146dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="291dp"
         android:text="Select Next Payment Date"
         android:textColor="#000"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_generateInvoice"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -132,6 +134,16 @@
         android:text="LKR"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_Fee"
         app:layout_constraintStart_toEndOf="@+id/tv_Fee" />
+
+    <Button
+        android:id="@+id/btn_generateInvoice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="97dp"
+        android:text="Generate Invoice"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btn_completePaytment"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
 </android.support.constraint.ConstraintLayout>
