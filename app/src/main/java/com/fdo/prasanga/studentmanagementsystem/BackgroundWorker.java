@@ -35,14 +35,17 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected String doInBackground(String ... params) {
         String type = params[0];
 
-        //String login_url = "http://10.0.2.2/Prasanga/newDB/login.php";//Uncomment these if you're using in localhost
+      /*
         String login_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/login.php";
         String registerStudent_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/registerStudent.php";
-        // String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
         String getGrade_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/selectGrade.php";
-        // String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
         String updateFees_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/updateFees.php";
-        //String updateFees_url = "http://10.0.2.2/skyManagement/studentManagementSystem/updateFees.php";
+
+        */
+        String login_url = "http://10.0.2.2/skyManagement/studentManagementSystem/login";//Uncomment these if you're using in localhost
+         String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
+         String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
+        String updateFees_url = "http://10.0.2.2/skyManagement/studentManagementSystem/updateFees.php";
 
         String transferParcel_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/transferParcel.php";
         String completeDelivery_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/completeDelivery.php";
@@ -253,7 +256,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     @Override
     public void onPostExecute(String result) {
+
+    //    alertDialog.setMessage(result);
+    //    alertDialog.show();
+
           if(result.equals("Login success!")){ //If login is success
+
              alertDialog.setMessage(result);
              alertDialog.show();
 
@@ -263,13 +271,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             context.startActivity(intent);
             ((Activity)context).finish();
        }
-      /* else {
-              alertDialog.setMessage(result);
-              alertDialog.show();
-          }
-*/
-       ///////Just this code
-
 
 
         else {//Registration possibilities need to be considered
@@ -280,7 +281,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                   SharedPreferences.Editor editor= sharedPreferences.edit();
                   editor.putString("grade", result);//Saving the extracted result from the database
                   editor.apply();
-                  Intent intent = new Intent(context, Fees2Activity.class);
+                  Intent intent = new Intent(context, Fees2Activity.class);//Starting the next activity
                   context.startActivity(intent);
 
               //    alertDialog.setMessage(result);//temp

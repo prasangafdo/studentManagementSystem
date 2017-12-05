@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
                 String type = "Login";
 
                 BackgroundWorker backgroundWorker = new BackgroundWorker(LoginActivity.this);
-                backgroundWorker.execute(type, username, password);
+               // backgroundWorker.execute(type, username, password);
                 Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
                 startActivity(intent);
             }
