@@ -5,8 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fdo.prasanga.studentmanagementsystem.FeesActivity"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@drawable/fees1">
 
+    <View
+        android:id="@+id/opacityFilter"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.2">
+    </View>
 
     <EditText
         android:id="@+id/et_fees_StudentID"
@@ -20,12 +29,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        android:textSize="30sp"
+        android:textColor="#fff"
+        android:textColorHint="#ddd"/>
 
     <Button
         android:id="@+id/btn_toActivity2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="2dp"
         android:text="Next ->"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -5,7 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.fdo.prasanga.studentmanagementsystem.UnpaidStudentsActivity"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+    android:background="@drawable/unpaid1">
+
+
 
     <ListView
         android:id="@+id/lv"
@@ -20,7 +23,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        android:background="#ccc"
+        android:alpha="0.7"/>
 
     <TextView
         android:id="@+id/textView10"
@@ -32,5 +37,6 @@
         android:text="Please click on the student ID to view info"
         app:layout_constraintBottom_toTopOf="@+id/lv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#fff"/>
 </android.support.constraint.ConstraintLayout>

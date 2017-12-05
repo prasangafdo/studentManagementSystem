@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,47 +9,77 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
 
-    <Button
-        android:id="@+id/btn_Register"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginTop="125dp"
-        android:alpha="0.8"
-        android:text="Register a Student"
-        app:layout_constraintBottom_toTopOf="@+id/btn_CalculateFees"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="281dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/cardView3"
+        android:layout_alignLeft="@+id/cardView3"
+        android:layout_alignStart="@+id/cardView3"
+        android:layout_marginBottom="60dp"
+        app:cardBackgroundColor="#b4457675"
+        app:cardCornerRadius="20dp"
+        android:paddingTop="80dp"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="264dp">
 
-    <Button
-        android:id="@+id/btn_CalculateFees"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:alpha="0.8"
-        android:text="Calculate Fees"
-        app:layout_constraintBottom_toTopOf="@+id/btn_ViewUnpaidStudents"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_Register"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
+        <TextView
+            android:id="@+id/tv_m_studentReg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Register a Student"
+            android:textColor="#fff"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btn_ViewUnpaidStudents"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="117dp"
-        android:alpha="0.8"
-        android:text="View Unpaid Students"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_CalculateFees"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
+    </android.support.v7.widget.CardView>
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="281dp"
+        android:layout_height="60dp"
+        android:layout_above="@+id/cardView2"
+        android:layout_alignLeft="@+id/cardView2"
+        android:layout_alignStart="@+id/cardView2"
+        android:layout_marginBottom="60dp"
+        app:cardBackgroundColor="#b4457675"
+        app:cardCornerRadius="20dp"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="327dp">
+
+        <TextView
+            android:id="@+id/tv_m_calculateFees"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Calculate Fees"
+            android:textColor="#fff"
+            android:textSize="20sp" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="281dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp"
+        app:cardBackgroundColor="#b4457675"
+        app:cardCornerRadius="20dp"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="407dp">
+
+        <TextView
+            android:id="@+id/tv_m_unpaidStudents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="View Unpaid Students"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp" />
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

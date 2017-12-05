@@ -3,6 +3,7 @@ package com.fdo.prasanga.studentmanagementsystem;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,8 @@ public class FeesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fees);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         et_Student_ID = (EditText) findViewById(R.id.et_fees_StudentID);
         btn_toActivity2 = (Button) findViewById(R.id.btn_toActivity2);

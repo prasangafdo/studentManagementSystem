@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@drawable/reg">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -12,6 +13,19 @@
         android:layout_height="match_parent"
         tools:context="com.fdo.prasanga.studentmanagementsystem.RegisterActivity"
         tools:layout_editor_absoluteY="81dp">
+
+        <View
+            android:id="@+id/opacityFilter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:alpha="0.1"
+            android:background="#fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        </View>
 
         <EditText
             android:id="@+id/et_FirstName"
@@ -22,6 +36,8 @@
             android:ems="10"
             android:hint="First Name"
             android:inputType="textPersonName"
+            android:textColor="#fff"
+            android:textColorHint="#edd"
             app:layout_constraintBottom_toTopOf="@+id/et_LastName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +51,8 @@
             android:ems="10"
             android:hint="Last Name"
             android:inputType="textPersonName"
+            android:textColor="#fff"
+            android:textColorHint="#edd"
             app:layout_constraintBottom_toTopOf="@+id/et_Address"
             app:layout_constraintStart_toStartOf="@+id/et_FirstName"
             app:layout_constraintTop_toBottomOf="@+id/et_FirstName" />
@@ -47,6 +65,8 @@
             android:ems="10"
             android:hint="Address"
             android:inputType="text"
+            android:textColor="#fff"
+            android:textColorHint="#edd"
             app:layout_constraintBottom_toTopOf="@+id/et_DateofBirth"
             app:layout_constraintStart_toStartOf="@+id/et_LastName"
             app:layout_constraintTop_toBottomOf="@+id/et_LastName" />
@@ -59,6 +79,8 @@
             android:ems="10"
             android:hint="Date of Birth"
             android:inputType="date"
+            android:textColor="#fff"
+            android:textColorHint="#edd"
             app:layout_constraintBottom_toTopOf="@+id/et_Grade"
             app:layout_constraintStart_toStartOf="@+id/et_Address"
             app:layout_constraintTop_toBottomOf="@+id/et_Address" />
@@ -71,6 +93,8 @@
             android:ems="10"
             android:hint="Grade"
             android:inputType="number"
+            android:textColor="#fff"
+            android:textColorHint="#edd"
             app:layout_constraintBottom_toTopOf="@+id/et_ParentNum"
             app:layout_constraintStart_toStartOf="@+id/et_DateofBirth"
             app:layout_constraintTop_toBottomOf="@+id/et_DateofBirth" />
@@ -79,10 +103,12 @@
             android:id="@+id/et_ParentNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="8dp"
             android:ems="10"
             android:hint="Parent's Contact Number"
             android:inputType="phone"
+            android:textColor="#fff"
+            android:textColorHint="#edd"
             app:layout_constraintBottom_toTopOf="@+id/ck_RegistrationFee"
             app:layout_constraintStart_toStartOf="@+id/et_Grade"
             app:layout_constraintTop_toBottomOf="@+id/et_Grade" />
@@ -97,6 +123,7 @@
             android:layout_marginStart="63dp"
             android:gravity="center"
             android:text="Student has paid the Registration Fee"
+            android:textColor="#fff"
             app:layout_constraintBottom_toTopOf="@+id/btn_calFees"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,14 +133,15 @@
             android:id="@+id/btn_CompleteRegistration"
             android:layout_width="199dp"
             android:layout_height="45dp"
-            android:layout_marginBottom="39dp"
+            android:layout_marginBottom="32dp"
             android:paddingBottom="20dp"
             android:text="Complete Registration"
             android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_calFees" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_calFees"
+            android:elevation="2dp"/>
 
         <Button
             android:id="@+id/btn_calFees"
@@ -124,7 +152,8 @@
             android:text="Calculate fees"
             app:layout_constraintBottom_toTopOf="@+id/btn_CompleteRegistration"
             app:layout_constraintStart_toStartOf="@+id/btn_CompleteRegistration"
-            app:layout_constraintTop_toBottomOf="@+id/ck_RegistrationFee" />
+            app:layout_constraintTop_toBottomOf="@+id/ck_RegistrationFee"
+            android:layout_marginLeft="30dp" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

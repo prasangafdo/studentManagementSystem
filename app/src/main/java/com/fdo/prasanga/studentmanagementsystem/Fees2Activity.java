@@ -107,7 +107,7 @@ public class Fees2Activity extends AppCompatActivity {
                 String fee = tv_Fee.getText().toString();
                 //Calculate fees and send
 
-                Toast.makeText(getApplicationContext(),"St: "+studentID+" N Date: "+next_Date+ "C date: "+current_Date, Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(),"St: "+studentID+" N Date: "+next_Date+ "C date: "+current_Date, Toast.LENGTH_LONG).show();
 
                 BackgroundWorker backgroundWorker = new BackgroundWorker(Fees2Activity.this);
                 backgroundWorker.execute(type,studentID, next_Date, current_Date, fee);//Put strings to execute
@@ -191,12 +191,12 @@ public class Fees2Activity extends AppCompatActivity {
         Document document = new Document();
         PdfWriter.getInstance(document, output);
         document.open();
-        document.add(new Paragraph("Student ID: "));//Here we include the data we want to put into the pdf file
-        document.add(new Paragraph("Grade: "));
-        document.add(new Paragraph("Paid Date: "));
-        document.add(new Paragraph("Paid Amount: "));
-        document.add(new Paragraph("Next Payment Date: "));
-
+        document.add(new Paragraph("================ABC INTERNATIONAL SCHOOL======================="));
+        document.add(new Paragraph("=====================PAYMENT INVOICE==========================="));
+        document.add(new Paragraph("Student ID: "+tv_studentID.getText().toString()));//Here we include the data we want to put into the pdf file
+        document.add(new Paragraph("Grade: "+tv_grade.getText().toString()));
+        document.add(new Paragraph("Paid Date: "+tv_CurrentDate.getText().toString()));
+        document.add(new Paragraph("Paid Amount: "+tv_Fee.getText().toString()));
         document.close();
         previewPdf();
 
