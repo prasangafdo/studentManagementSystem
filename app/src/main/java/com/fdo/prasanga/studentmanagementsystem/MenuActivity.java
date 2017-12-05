@@ -15,10 +15,9 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Menu");
         //Compatible with more Android versions
 
-        Button btn_Register, btn_ViewDetails, btn_CalculateFees, btn_ViewUnpaidStudents;
+        Button btn_Register, btn_CalculateFees, btn_ViewUnpaidStudents;
 
         btn_Register = (Button) findViewById(R.id.btn_Register);
-        btn_ViewDetails =(Button) findViewById(R.id.btn_ViewStudentDetails);
         btn_CalculateFees =(Button) findViewById(R.id.btn_CalculateFees);
         btn_ViewUnpaidStudents =(Button) findViewById(R.id.btn_ViewUnpaidStudents);
 
@@ -26,14 +25,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btn_ViewDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this, StudentDetailsActivity.class);
                 startActivity(intent);
             }
         });

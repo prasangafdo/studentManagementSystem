@@ -40,8 +40,6 @@ public class Fees2Activity extends AppCompatActivity {
     String StudentID;
 
     private static final String TAG = "PdfCreatorActivity";
-   // private EditText mContentEditText, et_Prasanga;
-  //  private Button mCreateButton;
     private File pdfFile;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 111;
 
@@ -62,7 +60,6 @@ public class Fees2Activity extends AppCompatActivity {
         btn_generateInvoice.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-       //GenerateInvoice invoice = new GenerateInvoice();
         try {
             createPdfWrapper();
         } catch (FileNotFoundException e) {
@@ -87,16 +84,12 @@ public class Fees2Activity extends AppCompatActivity {
         tv_grade.setText(grade);
         tv_studentID.setText(student_ID);
 
-
         if (Integer.parseInt(grade)>5){//Calculating fees
-
-          //  Toast.makeText(getApplicationContext(),"Fee is 4000",Toast.LENGTH_SHORT).show();//Just for debugging
             tv_Fee.setText("4000.00");
 
         }
         else
         {
-           // Toast.makeText(getApplicationContext(),"Fee is 3000", Toast.LENGTH_SHORT).show();
             tv_Fee.setText("3000.00");
         }
 
@@ -118,14 +111,10 @@ public class Fees2Activity extends AppCompatActivity {
 
                 BackgroundWorker backgroundWorker = new BackgroundWorker(Fees2Activity.this);
                 backgroundWorker.execute(type,studentID, next_Date, current_Date, fee);//Put strings to execute
-
             }
         });
 
     }
-
-    /////////////////////////////////////////
-
 
     private void createPdfWrapper() throws FileNotFoundException, DocumentException {
 

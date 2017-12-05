@@ -35,21 +35,18 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     protected String doInBackground(String ... params) {
         String type = params[0];
 
-      /*
+
         String login_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/login.php";
         String registerStudent_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/registerStudent.php";
         String getGrade_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/selectGrade.php";
         String updateFees_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/updateFees.php";
 
-        */
+      /*
         String login_url = "http://10.0.2.2/skyManagement/studentManagementSystem/login";//Uncomment these if you're using in localhost
          String registerStudent_url = "http://10.0.2.2/skyManagement/studentManagementSystem/registerStudent.php";
          String getGrade_url = "http://10.0.2.2/skyManagement/studentManagementSystem/selectGrade.php";
         String updateFees_url = "http://10.0.2.2/skyManagement/studentManagementSystem/updateFees.php";
-
-        String transferParcel_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/transferParcel.php";
-        String completeDelivery_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/completeDelivery.php";
-        String userID_url = "https://rapiddelivery.000webhostapp.com/MobilePhp/userid.php";
+ */
 
         if (type.equals("Login")) { //Login
             try {
@@ -84,7 +81,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         else if (type.equals("registerStudent")){// Registering a student
             try {
@@ -95,7 +91,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 String dateofBirth = params[4];
                 String grade = params[5];
                 String parentNum = params[6];
-
 
                 URL url = new URL(registerStudent_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -164,7 +159,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
 
 
@@ -206,45 +200,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
         }
-
- else if (type.equals("completeDelivery")){//Complete Delivery
-            try {
-                String parcelID = params[1];
-
-                URL url = new URL(completeDelivery_url);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-                httpURLConnection.setDoInput(true);
-                OutputStream outputStream = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream , "UTF-8"));
-                String post_data = URLEncoder.encode("parcelID","UTF-8")+"="+URLEncoder.encode(parcelID,"UTF-8");
-                bufferedWriter.write(post_data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
-                outputStream.close();
-                InputStream inputStream = httpURLConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                String result= "";
-                String line= "";
-                while ((line = bufferedReader.readLine())!=null){
-                    result+=line;
-                }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
-                return result;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-
         return null;
     }
 
@@ -256,9 +212,6 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     @Override
     public void onPostExecute(String result) {
-
-    //    alertDialog.setMessage(result);
-    //    alertDialog.show();
 
           if(result.equals("Login success!")){ //If login is success
 
@@ -283,21 +236,12 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
                   editor.apply();
                   Intent intent = new Intent(context, Fees2Activity.class);//Starting the next activity
                   context.startActivity(intent);
-
-              //    alertDialog.setMessage(result);//temp
-               //   alertDialog.show();
               }
-
               else {
                   alertDialog.setMessage(result);
                     alertDialog.show();
               }
-            //  alertDialog.show();
-           //   alertDialog.setMessage(student_ID);
-            //  alertDialog.show();
           }
-
-
     }
 
     @Override

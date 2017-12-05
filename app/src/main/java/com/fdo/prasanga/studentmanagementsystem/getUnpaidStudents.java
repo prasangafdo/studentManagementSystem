@@ -34,8 +34,9 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String> {
     //Context c;
     // String address;
     ListView lv;
-    //String setStudentID_url = "http://10.0.2.2/skyManagement/studentManagementSystem/setUnpaidStudentID.php";
-    String setStudentID_url = "http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentInfo.php";
+
+   // String setStudentID_url = "http://10.0.2.2/skyManagement/studentManagementSystem/getUnpaidStudentInfo.php";
+        String setStudentID_url = "http://rapiddelivery.000webhostapp.com/skyManagement/studentManagementSystem/getUnpaidStudentInfo.php";
 
     getUnpaidStudents(Context ctx) {
         context = ctx;
@@ -81,7 +82,7 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String> {
                 StringBuffer sb=new StringBuffer();
                 if(bufferedReader != null) {
                     while ((line=bufferedReader.readLine()) != null) {
-                       result = sb.append(line+"n").toString();
+                        result = sb.append(line+"n").toString();
                     }
                 }else {
                     return null;
@@ -105,16 +106,16 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String> {
                         String p_num = jo.getString("parent_Contact_Num");
                         String name = first_name+ " "+last_name;
 
-                            //alertDialog.setMessage("Name: "+name+"\nAddress: "+address+"\nGrade: "+grade+"\nParent's contact number: "+p_num);
-                            //alertDialog.show(); //Uncomment to get the result through am alert dialog
+                        //alertDialog.setMessage("Name: "+name+"\nAddress: "+address+"\nGrade: "+grade+"\nParent's contact number: "+p_num);
+                        //alertDialog.show(); //Uncomment to get the result through am alert dialog
 
-                               SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-                               SharedPreferences.Editor editor = sharedPreferences.edit();
-                               editor.putString("name", name);//Saving the extracted result from the database
-                               editor.putString("address", address);
-                               editor.putString("grade", grade);
-                               editor.putString("p_num", p_num);
-                               editor.apply();
+                        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("name", name);//Saving the extracted result from the database
+                        editor.putString("address", address);
+                        editor.putString("grade", grade);
+                        editor.putString("p_num", p_num);
+                        editor.apply();
 
                         Intent intent = new Intent(context, UnpaidStudentInfoActivity.class);
                         context.startActivity(intent);
@@ -149,14 +150,14 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String> {
 
     @Override
     public void onPostExecute(String result) {
-     //   String next_due_date = "nnnnnn";
+        //   String next_due_date = "nnnnnn";
 
 
-      //  alertDialog.setMessage(result);
+        //  alertDialog.setMessage(result);
 
 
 
-}
+    }
 
     @Override
     protected void onProgressUpdate(Void... values) {
@@ -165,4 +166,3 @@ public class getUnpaidStudents extends AsyncTask<String, Void, String> {
 
 
 }
-

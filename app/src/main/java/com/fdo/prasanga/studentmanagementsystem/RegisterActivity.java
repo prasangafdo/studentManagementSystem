@@ -54,8 +54,6 @@ public class RegisterActivity extends AppCompatActivity {
                     et_DateofBirth.setText("");
                     et_Grade.setText("");
                     et_ParentNum.setText("");
-                    //ck_RegistrationFee.
-
                 }
                 else{
                     //AlertDialog alertDialog = new android.app.AlertDialog.Builder().create();
@@ -77,33 +75,6 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-    /*    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(RegisterActivity.this);//Retrieving all saved data.
-        String first_name = preferences.getString("first_name", null);
-        String last_name = preferences.getString("last_name", null);
-        String address = preferences.getString("address", null);
-        String dateOfBirth = preferences.getString("dateOfBirth", null);
-        String grade = preferences.getString("grade", null);
-        String parentNum = preferences.getString("parentNum", null);
-
-        boolean saveData = preferences.getBoolean("saveData", false);//If not found, it's false
-        //Restoring the filled information
-
-        if (saveData){
-
-            et_FirstName.setText(valueOf(saveData));
-            et_LastName.setText(last_name);
-            et_Address.setText(address);
-            et_DateofBirth.setText(dateOfBirth);
-            et_Grade.setText(grade);
-            et_ParentNum.setText(parentNum);
-            ck_RegistrationFee.isChecked();
-
-            SharedPreferences.Editor editor = preferences.edit();
-
-            editor.clear();//removing saved data from the memory
-            editor.apply();
-            editor.putBoolean("saveData", false);//Save data is now cleared.
-        }*/
     }
 
     @Override

@@ -6,63 +6,49 @@
     android:layout_height="match_parent"
     android:background="@drawable/login"
     tools:context="com.fdo.prasanga.studentmanagementsystem.MenuActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp">
 
     <Button
         android:id="@+id/btn_Register"
         android:layout_width="205dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="125dp"
         android:alpha="0.8"
         android:text="Register a Student"
-        app:layout_constraintBottom_toTopOf="@+id/btn_ViewStudentDetails"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1" />
-
-    <Button
-        android:id="@+id/btn_ViewStudentDetails"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="52dp"
-        android:alpha="0.8"
-        android:text="View Student Details"
         app:layout_constraintBottom_toTopOf="@+id/btn_CalculateFees"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/btn_Register"
-        app:layout_constraintRight_toRightOf="@+id/btn_Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/btn_CalculateFees"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="48dp"
+        android:layout_width="205dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
         android:alpha="0.8"
         android:text="Calculate Fees"
         app:layout_constraintBottom_toTopOf="@+id/btn_ViewUnpaidStudents"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="@+id/btn_ViewStudentDetails"
-        app:layout_constraintRight_toRightOf="@+id/btn_ViewStudentDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_Register"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
     <Button
         android:id="@+id/btn_ViewUnpaidStudents"
         android:layout_width="205dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="76dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="117dp"
         android:alpha="0.8"
         android:text="View Unpaid Students"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_CalculateFees"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 

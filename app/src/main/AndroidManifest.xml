@@ -3,8 +3,8 @@
     package="com.fdo.prasanga.studentmanagementsystem">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -21,12 +21,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MenuActivity" />
-        <activity android:name=".StudentDetailsActivity" />
         <activity android:name=".FeesActivity" />
         <activity android:name=".UnpaidStudentsActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".Fees2Activity" />
-        <activity android:name=".UnpaidStudentInfoActivity"></activity>
+        <activity android:name=".UnpaidStudentInfoActivity" />
     </application>
 
 </manifest>
