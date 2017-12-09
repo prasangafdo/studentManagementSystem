@@ -3,6 +3,7 @@ package com.fdo.prasanga.studentmanagementsystem;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -12,6 +13,8 @@ public class UnpaidStudentInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unpaid_student_info);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("Unpaid Student information");
 
         TextView tv_name, tv_address, tv_grade, tv_P_Num;
 

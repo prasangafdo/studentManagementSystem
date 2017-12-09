@@ -59,26 +59,8 @@ public class Student_ID_Parser extends AsyncTask<Void,Integer,Integer> {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     getUnpaidStudents getUnpaidStudents = new getUnpaidStudents(c);
                     getUnpaidStudents.execute("setStudent_ID", Student_Info.get(position));
-
                 }
             });
-            //LISTENET
-
-             /*   SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
-                SharedPreferences.Editor editor= sharedPreferences.edit();
-                editor.putString("name",players.get(position));//Getting the value of the clicked field and saving
-                editor.apply();
-*/
-
-
-               /*     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(c);//Retrieving all saved data.
-                    String pickup_address = preferences.getString("pickup_address", null);
-                    String delivery_address = preferences.getString("delivery_address", null);//def is the default value
-                    /////////////////////////
-
-                    Toast.makeText(c,pickup_address, Toast.LENGTH_SHORT).show();
-*/
-
         }else
         {
             Toast.makeText(c,"Unable to Parse", Toast.LENGTH_SHORT).show();
@@ -89,38 +71,24 @@ public class Student_ID_Parser extends AsyncTask<Void,Integer,Integer> {
     private int parse()
     {
         try
-        {
-            //ADD THAT DATA TO JSON ARRAY FIRST
+        {   //ADD THAT DATA TO JSON ARRAY FIRST
             JSONArray ja=new JSONArray(data);
             //CREATE JO OBJ TO HOLD A SINGLE ITEM
             JSONObject jo=null;
             Student_Info.clear();
-            //LOOP THRU ARRAY
+            //LOOP THROUGH ARRAY
             for(int i=0;i<ja.length();i++)
             {
                 jo=ja.getJSONObject(i);
                 //RETRIEVE NAME
                 String student_ID=jo.getString("student_ID");//This is the column name you want toi retrieve
                 String next_due_date=jo.getString("next_due_date");
-           /*   String address=jo.getString("user_Address");
-                String grade=jo.getString("grade");
-                String p_num=jo.getString("parent_Contact_Num");
-  /**/
 
-
-                //    String name = first_name +" " + last_name;
-/////////////////////////////////
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(c);
                 SharedPreferences.Editor editor= sharedPreferences.edit();
                  editor.putString("student_ID", student_ID);//Saving the extracted result from the database
-                // editor.putString("next_due_date", next_due_date);
-       /*         editor.putString("grade", grade);
-               editor.putString("p_num", p_num); /**/
                 editor.apply();
-/////////////////////////////////
                 Student_Info.add(student_ID);//Adding name to the arraylist
-               // Student_Info.add(next_due_date);
-
             }
             return 1;
         } catch (JSONException e) {

@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -15,14 +15,13 @@ public class MenuActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Menu");
         //Compatible with more Android versions
 
-        Button btn_Register, btn_ViewDetails, btn_CalculateFees, btn_ViewUnpaidStudents;
+        TextView tv_Reg, tv_calFees, tv_unpaidStudents;
 
-        btn_Register = (Button) findViewById(R.id.btn_Register);
-        btn_ViewDetails =(Button) findViewById(R.id.btn_ViewStudentDetails);
-        btn_CalculateFees =(Button) findViewById(R.id.btn_CalculateFees);
-        btn_ViewUnpaidStudents =(Button) findViewById(R.id.btn_ViewUnpaidStudents);
+        tv_Reg = (TextView) findViewById(R.id.tv_m_studentReg);
+        tv_calFees = (TextView) findViewById(R.id.tv_m_calculateFees);
+        tv_unpaidStudents = (TextView) findViewById(R.id.tv_m_unpaidStudents);
 
-        btn_Register.setOnClickListener(new View.OnClickListener() {
+        tv_Reg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, RegisterActivity.class);
@@ -30,15 +29,7 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        btn_ViewDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuActivity.this, StudentDetailsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        btn_CalculateFees.setOnClickListener(new View.OnClickListener() {
+        tv_calFees.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, FeesActivity.class);
@@ -46,7 +37,8 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        btn_ViewUnpaidStudents.setOnClickListener(new View.OnClickListener() {
+
+        tv_unpaidStudents.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MenuActivity.this, UnpaidStudentsActivity.class);
@@ -54,5 +46,11 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }
